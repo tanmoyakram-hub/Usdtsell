@@ -1,0 +1,883 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Prime Exchange - Professional Crypto Node</title>
+    
+    <!-- 🔒 HIGH-SECURITY ULTIMATE GUARD: Place this at the very top of <head> -->
+<script>
+    // 🔒 HIGH-SECURITY DEVICE & URL ISOLATION SHIELD
+    (function () {
+        // Immediate Session Checking
+        const sessionToken = localStorage.getItem("user");
+        
+        // 1. Agar user logged in nahi hai, toh instant block aur wipe out
+        if (!sessionToken || sessionToken === "null" || sessionToken === "undefined" || !/^\d+$/.test(sessionToken)) {
+            localStorage.clear();
+            document.documentElement.style.display = 'none'; // Poore page ko invisible karo
+            window.location.replace("index.html"); // History bypass protection redirect
+            return;
+        }
+
+        // 2. Anti-Share URL Parameter Meta Check
+        // Agar link kisi ne WhatsApp ya direct copy karke bheja hai aur URL mein ? ya # parameters hain toh block karo
+        if (window.location.search || window.location.hash || window.location.href.includes('?')) {
+            localStorage.clear();
+            document.documentElement.style.display = 'none';
+            window.location.replace("index.html");
+            return;
+        }
+    })();
+</script>
+
+    <!-- Tailwind Engine Configuration Framework -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome System Vector Graphics -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
+        
+        body {
+            font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background-color: #f8fafc;
+            user-select: none;
+            -webkit-tap-highlight-color: transparent;
+        }
+        
+        /* Smooth Native CSS Layout Engine Customizations */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        .step-node-line {
+            position: relative;
+        }
+        .step-node-line::after {
+            content: '';
+            position: absolute;
+            top: 14px;
+            left: 50px;
+            right: 50px;
+            height: 2px;
+            background-color: #e2e8f0;
+            z-index: 1;
+        }
+
+        /* Interactive Element Acceleration Animations */
+        .click-bounce {
+            transition: transform 0.1s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .click-bounce:active {
+            transform: scale(0.97);
+        }
+
+        .animated-transition {
+            transition: all 0.25s ease-in-out;
+        }
+    </style>
+</head>
+<body class="bg-slate-900 min-h-screen flex justify-center items-start antialiased overflow-x-hidden">
+
+    <!-- 🔔 RECONFIGURED COMPACT TEXT-FORM INFRASTRUCTURE TOAST SYSTEM -->
+    <div id="toastNotification" class="fixed top-6 left-1/2 -translate-x-1/2 bg-slate-900/95 border border-slate-800 text-slate-100 text-xs font-semibold px-5 py-3 rounded-full shadow-2xl z-[99999] opacity-0 pointer-events-none transition-all duration-300 flex items-center gap-2.5 backdrop-blur-md">
+        <span id="toastIconContainer" class="flex items-center justify-center bg-emerald-500/10 text-emerald-400 w-5 h-5 rounded-full">
+            <i class="fa-solid fa-check text-[10px]"></i>
+        </span>
+        <span id="toastText">System message pipeline online</span>
+    </div>
+
+    <!-- ========================================================================= -->
+    <!--                  MAIN MOBILE BOUNDARY MOCKUP CONTAINER                     -->
+    <!-- ========================================================================= -->
+    <div class="w-full max-w-md bg-white min-h-screen relative flex flex-col pb-36 overflow-x-hidden shadow-[0_0_50px_rgba(0,0,0,0.5)] border-x border-slate-800/10">
+        
+        <!-- ========================================================================= -->
+        <!-- 1. SYSTEM HOME NODE SCREEN SECTION -->
+        <!-- ========================================================================= -->
+        <div id="view-home" class="view-screen-layer flex flex-col w-full animated-transition">
+            
+            <!-- BLUE HERO ACCENT ACCELERATOR MODULE -->
+            <div class="bg-gradient-to-b from-blue-600 to-blue-700 text-white pt-6 pb-24 px-5 rounded-b-[2.5rem] relative shadow-lg shadow-blue-600/10">
+                
+                <!-- Security Line Pipeline Indicator Header -->
+                <div class="flex justify-between items-center mb-5 relative">
+                    <span class="text-[11px] font-medium opacity-90 tracking-wide flex items-center gap-1.5">
+                        <i class="fa-solid fa-shield-halved text-blue-300"></i> Trusted by 10,000+ users
+                    </span>
+                    
+                    <!-- Profile Management Node Grid Anchor Point -->
+                    <div class="relative">
+                        <button id="profileBtn" class="w-10 h-10 rounded-full border-2 border-white/80 bg-blue-500/50 flex items-center justify-center overflow-hidden shadow-md click-bounce focus:outline-none">
+                            <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Felix" alt="Profile" class="w-full h-full object-cover">
+                        </button>
+
+                        <!-- System Custom Micro-Logout Dropdown Panel (Re-optimized) -->
+                        <div id="logoutDropdown" class="hidden absolute right-0 mt-3 w-44 bg-white rounded-xl shadow-[0_10px_30px_rgba(0,0,0,0.15)] border border-slate-100 py-1.5 z-50 text-slate-800 animated-transition">
+                            <div class="px-3.5 py-2.5 border-b border-slate-50">
+                                <p class="text-[10px] text-slate-400 font-bold uppercase tracking-wider">My Security Token</p>
+                                <p id="userDisplay" class="text-xs font-bold text-slate-700 truncate mt-0.5">User pipeline</p>
+                            </div>
+                            <button onclick="logoutAction()" class="w-full text-left px-3.5 py-3 text-xs font-bold text-red-600 hover:bg-red-50 flex items-center gap-2.5 transition-colors">
+                                <i class="fa-solid fa-power-off text-sm"></i> Logout Node Session
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Branding Header Grid Layout -->
+                <div class="mb-5">
+                    <div class="flex items-center gap-2 text-2xl font-extrabold tracking-wider uppercase">
+                        <i class="fa-solid fa-square-sliders text-2xl text-blue-200"></i> Prime Exchange
+                    </div>
+                    <div class="flex gap-4 text-[11px] font-semibold mt-2.5 opacity-85 tracking-wide">
+                        <span><i class="fa-solid fa-bolt text-amber-400 mr-1.5"></i> Fast</span>
+                        <span class="opacity-40">•</span>
+                        <span><i class="fa-solid fa-shield-check text-blue-200 mr-1.5"></i> Secure</span>
+                        <span class="opacity-40">•</span>
+                        <span><i class="fa-solid fa-circle-check text-blue-200 mr-1.5"></i> Trusted</span>
+                    </div>
+                </div>
+
+                <!-- Structural Tab Pill Toggle Switches Controller -->
+                <div class="flex bg-blue-800/40 p-1.5 rounded-2xl gap-2 mt-5 border border-white/5">
+                    <button onclick="switchView('buy')" class="w-1/2 bg-white text-blue-700 font-bold py-3 px-4 rounded-xl shadow-sm transition flex items-center justify-center gap-2 click-bounce">
+                        Buy <i class="fa-solid fa-arrow-right text-xs"></i>
+                    </button>
+                    <button onclick="switchView('sell')" class="w-1/2 text-white/90 font-bold py-3 px-4 rounded-xl hover:bg-white/10 transition flex items-center justify-center gap-2 click-bounce">
+                        Sell <i class="fa-solid fa-arrow-right text-xs"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- NEGATIVE MARGIN OVERLAP LAYER PIPELINE CONTAINER -->
+            <div class="px-4 -mt-12 z-10 space-y-4">
+                
+                <!-- FIXED FLOATING WALLET DESIGN (IMAGE 1000059319.jpg EXACT MATCH) -->
+                <div class="bg-white p-5 rounded-2xl shadow-[0_10px_25px_rgba(0,0,0,0.05)] border border-slate-100 flex justify-between items-center relative">
+                    <div class="flex items-center gap-4">
+                        <div class="bg-blue-50 w-11 h-11 rounded-xl text-blue-600 shadow-sm flex items-center justify-center">
+                            <i class="fa-solid fa-wallet text-xl"></i>
+                        </div>
+                        <div>
+                            <p class="text-xs text-slate-400 font-semibold">Prime Exch USDT Balance</p>
+                            <p class="text-2xl font-black text-slate-800 mt-0.5 tracking-tight"><span id="dashboardUsdtStack">0.00</span> <span class="text-lg font-bold text-slate-800">USDT</span></p>
+                        </div>
+                    </div>
+                    <div class="text-right">
+                        <p class="text-[10px] text-slate-400 font-bold uppercase tracking-wider">Wallet</p>
+                        <p class="text-xs font-extrabold text-blue-600 bg-blue-50 px-2.5 py-1 rounded-lg mt-1 border border-blue-100">PEX-USDT</p>
+                    </div>
+                </div>
+
+                <!-- Component 2: Main Exchange Matrix Calculator Terminal -->
+                <div class="bg-white p-5 rounded-3xl shadow-[0_8px_30px_rgba(0,0,0,0.04)] border border-slate-100 space-y-4">
+                    <div class="flex justify-between items-center">
+                        <div>
+                            <span class="text-[11px] text-slate-400 font-extrabold tracking-widest uppercase">USDT / INR</span>
+                            <!-- 🛠️ DYNAMIC NODE: RATE HEADING SYNCED FROM DATABASE -->
+                            <h2 id="liveRateDisplay" class="text-3xl font-black text-slate-800 mt-0.5 tracking-tight">₹92.00</h2>
+                        </div>
+                        <span class="bg-blue-50 text-blue-600 text-xs font-bold px-3 py-1.5 rounded-full flex items-center gap-1.5 border border-blue-100/30">
+                            <i class="fa-solid fa-chart-line-up"></i> Platform rate
+                        </span>
+                    </div>
+
+                    <!-- Input Box: Source Fiat Currency Amount -->
+                    <div>
+                        <label class="text-xs font-bold text-slate-400 uppercase tracking-wider block mb-1.5">You Pay (INR)</label>
+                        <div class="relative rounded-xl overflow-hidden shadow-inner">
+                            <input id="inrInput" type="number" value="10000" class="w-full bg-slate-50 border border-slate-100 rounded-xl py-3.5 px-4 text-lg font-black text-slate-800 focus:outline-none focus:border-blue-500 focus:bg-white transition-all" />
+                        </div>
+                    </div>
+
+                    <!-- Input Box: Destination Yield Value Output Display (FIXED DYNAMIC LOGO) -->
+                    <div>
+                        <label class="text-xs font-bold text-slate-400 uppercase tracking-wider block mb-1.5">You Get (USDT)</label>
+                        <div class="w-full bg-slate-50 border border-slate-100 rounded-xl py-3.5 px-4 text-lg font-black text-blue-600 flex items-center gap-2.5 shadow-inner">
+                            <i id="calculatorCoinLogo" class="fa-brands fa-ethereum text-slate-600 text-xl w-6 text-center"></i>
+                            <span id="usdtOutput">108.70 USDT</span>
+                        </div>
+                    </div>
+
+                    <!-- Core Action CTA Processing Node -->
+                    <button onclick="triggerBuyProcess()" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-extrabold py-4 rounded-xl transition shadow-lg shadow-blue-600/20 flex items-center justify-center gap-2 text-base click-bounce">
+                        Buy <i class="fa-solid fa-arrow-right-long ml-1"></i>
+                    </button>
+                </div>
+
+                <!-- Component 3: Static Selector Array Module Framework -->
+                <div class="bg-white p-4 rounded-2xl border border-slate-100/80">
+                    <h3 class="text-xs font-black text-slate-400 uppercase tracking-widest mb-3 px-1">Select Network</h3>
+                    <div class="grid grid-cols-3 gap-2.5">
+                        
+                        <!-- TRC20 Card System Module -->
+                        <div id="net-trc" onclick="selectHomeNetwork('trc')" class="home-network-card bg-white border border-slate-200 p-3 rounded-xl text-center flex flex-col items-center justify-between cursor-pointer transition-all duration-200 hover:bg-slate-50">
+                            <i class="fa-solid fa-triangle-exclamation text-red-500 text-lg mb-1"></i>
+                            <span class="text-xs font-bold text-slate-800">TRC20</span>
+                            <span class="text-[9px] text-slate-400 mt-1.5 leading-tight">Exchange fee:<br><b class="text-slate-600">1.3 USDT</b></span>
+                        </div>
+                        
+                        <!-- ERC20 Card System Module -->
+                        <div id="net-erc" onclick="selectHomeNetwork('erc')" class="home-network-card bg-blue-50/60 border-2 border-blue-500 p-3 rounded-xl text-center flex flex-col items-center justify-between cursor-pointer relative transition-all duration-200">
+                            <i class="fa-brands fa-ethereum text-slate-800 text-lg mb-1"></i>
+                            <span class="text-xs font-bold text-slate-800">ERC20</span>
+                            <span class="text-[9px] text-slate-400 mt-1.5 leading-tight">Exchange fee:<br><b class="text-slate-600">0.45 USDT</b></span>
+                        </div>
+                        
+                        <!-- BEP20 Card System Module -->
+                        <div id="net-bep" onclick="selectHomeNetwork('bep')" class="home-network-card bg-white border border-slate-200 p-3 rounded-xl text-center flex flex-col items-center justify-between cursor-pointer transition-all duration-200 hover:bg-slate-50">
+                            <i class="fa-solid fa-coins text-amber-500 text-lg mb-1"></i>
+                            <span class="text-xs font-bold text-slate-800">BEP20</span>
+                            <span class="text-[9px] text-slate-400 mt-1.5 leading-tight">Exchange fee:<br><b class="text-slate-600">0.01 USDT</b></span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Component 4: Quick Operational Menu Rows System Matrix -->
+                <div class="bg-white p-4 rounded-2xl border border-slate-100/80">
+                    <h3 class="text-xs font-black text-slate-400 uppercase tracking-widest mb-3 px-1">Quick Actions</h3>
+                    <div class="space-y-2.5">
+                        
+                        <!-- Row Node 1 -->
+                        <div onclick="switchView('buy')" class="p-3.5 bg-slate-50 hover:bg-blue-50/40 rounded-xl border border-slate-100 flex justify-between items-center cursor-pointer transition-all shadow-sm">
+                            <div class="flex items-center gap-3.5">
+                                <span class="bg-blue-600 text-white text-xs font-black w-6 h-6 rounded-full flex items-center justify-center shadow-md shadow-blue-600/10">1</span>
+                                <div>
+                                    <h4 class="text-xs font-extrabold text-slate-800">Buy USDT</h4>
+                                    <p class="text-[10px] text-slate-400 font-medium">Convert INR to USDT instantly</p>
+                                </div>
+                            </div>
+                            <i class="fa-solid fa-chevron-right text-slate-300 text-xs"></i>
+                        </div>
+
+                        <!-- Row Node 2 -->
+                        <div onclick="switchView('sell')" class="p-3.5 bg-slate-50 hover:bg-blue-50/40 rounded-xl border border-slate-100 flex justify-between items-center cursor-pointer transition-all shadow-sm">
+                            <div class="flex items-center gap-3.5">
+                                <span class="bg-blue-600 text-white text-xs font-black w-6 h-6 rounded-full flex items-center justify-center shadow-md shadow-blue-600/10">2</span>
+                                <div>
+                                    <h4 class="text-xs font-extrabold text-slate-800">Sell USDT</h4>
+                                    <p class="text-[10px] text-slate-400 font-medium">Sell USDT and receive INR</p>
+                                </div>
+                            </div>
+                            <i class="fa-solid fa-chevron-right text-slate-300 text-xs"></i>
+                        </div>
+
+                        <!-- Row Node 3 -->
+                        <div onclick="switchView('txns')" class="p-3.5 bg-slate-50 hover:bg-blue-50/40 rounded-xl border border-slate-100 flex justify-between items-center cursor-pointer transition-all shadow-sm">
+                            <div class="flex items-center gap-3.5">
+                                <span class="bg-blue-600 text-white text-xs font-black w-6 h-6 rounded-full flex items-center justify-center shadow-md shadow-blue-600/10">3</span>
+                                <div>
+                                    <h4 class="text-xs font-extrabold text-slate-800">Track Orders</h4>
+                                    <p class="text-[10px] text-slate-400 font-medium">View all your transactions</p>
+                                </div>
+                            </div>
+                            <i class="fa-solid fa-chevron-right text-slate-300 text-xs"></i>
+                        </div>
+
+                        <!-- Row Node 4 -->
+                        <div onclick="switchView('profile')" class="p-3.5 bg-slate-50 hover:bg-blue-50/40 rounded-xl border border-slate-100 flex justify-between items-center cursor-pointer transition-all shadow-sm">
+                            <div class="flex items-center gap-3.5">
+                                <span class="bg-blue-600 text-white text-xs font-black w-6 h-6 rounded-full flex items-center justify-center shadow-md shadow-blue-600/10">4</span>
+                                <div>
+                                    <h4 class="text-xs font-extrabold text-slate-800">Secure Wallet</h4>
+                                    <p class="text-[10px] text-slate-400 font-medium">Multi-network support</p>
+                                </div>
+                            </div>
+                            <i class="fa-solid fa-chevron-right text-slate-300 text-xs"></i>
+                        </div>
+                    </div>
+                </div>
+
+                                <!-- 🛠️ FIXED COMPLIANCE STATUS BAR GRID PANEL -->
+                <div class="w-full flex justify-center items-center gap-3 py-3 px-2 text-[9px] text-slate-400 font-bold uppercase tracking-wider text-center border-t border-slate-50 mt-4 mb-2">
+                    <span class="flex items-center gap-1 whitespace-nowrap"><i class="fa-solid fa-shield-check text-blue-500 text-[10px]"></i> SSL Secured</span>
+                    <span class="text-slate-300 font-normal select-none">•</span>
+                    <span class="flex items-center gap-1 whitespace-nowrap"><i class="fa-solid fa-bolt text-blue-500 text-[10px]"></i> Instant Processing</span>
+                    <span class="text-slate-300 font-normal select-none">•</span>
+                    <span class="flex items-center gap-1 whitespace-nowrap"><i class="fa-solid fa-users text-blue-500 text-[10px]"></i> 10K+ Users</span>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- ========================================================================= -->
+        <!-- 2. SYSTEM BUY TAB SCREEN MODULE -->
+        <!-- ========================================================================= -->
+        <div id="view-buy" class="view-screen-layer hidden flex flex-col w-full animated-transition">
+            
+            <!-- Structural Header Section Bar -->
+            <div class="bg-white border-b border-slate-100 p-4 flex items-center gap-4 sticky top-0 z-20">
+                <button onclick="switchView('home')" class="w-8 h-8 rounded-full bg-slate-50 flex items-center justify-center text-slate-700 click-bounce">
+                    <i class="fa-solid fa-arrow-left"></i>
+                </button>
+                <h2 class="text-base font-extrabold text-slate-800">Buy USDT Terminal</h2>
+            </div>
+            
+            <!-- Chrono-Steppers Linear Matrix Pipeline Node Track Lines -->
+            <div class="step-node-line flex justify-between items-center px-6 py-4 bg-white border-b border-slate-50 text-[11px] font-bold">
+                <div class="flex flex-col items-center gap-1.5 z-10">
+                    <span class="w-7 h-7 bg-blue-600 text-white rounded-full flex items-center justify-center shadow-md shadow-blue-600/20">1</span>
+                    <span class="text-blue-600">Amount</span>
+                </div>
+                <div class="flex flex-col items-center gap-1.5 z-10">
+                    <span class="w-7 h-7 bg-slate-100 text-slate-400 border border-slate-200 rounded-full flex items-center justify-center">2</span>
+                    <span class="text-slate-400 font-medium">Wallet</span>
+                </div>
+                <div class="flex flex-col items-center gap-1.5 z-10">
+                    <span class="w-7 h-7 bg-slate-100 text-slate-400 border border-slate-200 rounded-full flex items-center justify-center">3</span>
+                    <span class="text-slate-400 font-medium">Payment</span>
+                </div>
+                <div class="flex flex-col items-center gap-1.5 z-10">
+                    <span class="w-7 h-7 bg-slate-100 text-slate-400 border border-slate-200 rounded-full flex items-center justify-center">4</span>
+                    <span class="text-slate-400 font-medium">Done</span>
+                </div>
+            </div>
+
+            <!-- Terminal Dynamic Body Segment Area -->
+            <div class="p-4 space-y-4">
+                <div class="bg-white p-5 rounded-2xl border border-slate-100 shadow-sm space-y-4">
+                    
+                    <div>
+                        <label class="text-xs font-bold text-slate-400 uppercase tracking-wider block mb-2">Enter INR Amount</label>
+                        <div class="flex items-center bg-slate-50 border border-slate-200 rounded-xl focus-within:border-blue-500 focus-within:bg-white transition shadow-inner">
+                            <span class="pl-4 pr-2 text-slate-400 text-lg font-black">₹</span>
+                            <input id="buyTabInrInput" type="number" placeholder="Min. 2,000" class="w-full bg-transparent py-3.5 pr-4 text-base font-black text-slate-800 focus:outline-none">
+                        </div>
+                    </div>
+
+                    <!-- Precise 4 Networks Array Structuring Layout Node Grid -->
+                    <div>
+                        <label class="text-xs font-bold text-slate-400 uppercase tracking-wider block mb-2">Select Network Infrastructure</label>
+                        <div class="grid grid-cols-2 gap-3">
+                            
+                            <!-- Card Module TRC20 -->
+                            <div id="buy-net-trc" onclick="selectBuyTabNetwork('trc', 1.00)" class="buy-tab-network-card border border-slate-200 bg-white rounded-xl p-3 flex flex-col justify-between cursor-pointer hover:bg-slate-50/50 transition">
+                                <span class="text-xs font-extrabold text-slate-800">TRC20</span>
+                                <span class="text-[10px] text-slate-400 mt-2">Exchange fee: 1 USDT</span>
+                            </div>
+                            
+                            <!-- Card Module ERC20 -->
+                            <div id="buy-net-erc" onclick="selectBuyTabNetwork('erc', 0.45)" class="buy-tab-network-card border border-slate-200 bg-white rounded-xl p-3 flex flex-col justify-between cursor-pointer hover:bg-slate-50/50 transition">
+                                <span class="text-xs font-extrabold text-slate-800">ERC20</span>
+                                <span class="text-[10px] text-slate-400 mt-2">Exchange fee: 0.45 USDT</span>
+                            </div>
+                            
+                            <!-- Card Module BEP20 -->
+                            <div id="buy-net-bep" onclick="selectBuyTabNetwork('bep', 0.01)" class="buy-tab-network-card border border-slate-200 bg-white rounded-xl p-3 flex flex-col justify-between cursor-pointer hover:bg-slate-50/50 transition">
+                                <span class="text-xs font-extrabold text-slate-800">BEP20</span>
+                                <span class="text-[10px] text-slate-400 mt-2">Exchange fee: 0.01 USDT</span>
+                            </div>
+                            
+                            <!-- Card Module PEX-USDT -->
+                            <div id="buy-net-pex" onclick="selectBuyTabNetwork('pex', 0.00)" class="buy-tab-network-card border-2 border-blue-500 bg-blue-50/60 rounded-xl p-3 flex flex-col justify-between cursor-pointer transition">
+                                <span class="text-xs font-extrabold text-slate-800 flex items-center gap-1.5">
+                                    PEX-USDT <i class="fa-solid fa-circle-check text-blue-600 text-[10px]"></i>
+                                </span>
+                                <span class="text-[10px] text-emerald-600 font-bold mt-2">No exchange fee</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Dynamic Computed Yield Output Data Container Box -->
+                    <div class="flex justify-between items-center bg-blue-50/40 border border-blue-100 rounded-xl p-4">
+                        <span class="text-xs text-slate-500 font-bold uppercase tracking-wider">You receive (net yield)</span>
+                        <span id="buyTabUsdtOutput" class="text-xl font-black text-blue-600">0.00 USDT</span>
+                    </div>
+
+                    <div class="flex justify-between text-[11px] text-slate-400 font-bold uppercase tracking-wider pt-1">
+                        <!-- 🛠️ DYNAMIC NODE TEXT LABEL FOR RATE -->
+                        <span id="buyTabRateLabel">Rate Vector: ₹92/USDT</span>
+                        <span id="buyTabActiveNetText">Network: PEX-USDT</span>
+                    </div>
+
+                    <button onclick="executeBuyTabOrderPipeline()" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-extrabold py-3.5 rounded-xl shadow-md transition click-bounce">
+                        Continue Deployment &rarr;
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- ========================================================================= -->
+        <!-- 3. SYSTEM SELL TAB SCREEN MODULE -->
+        <!-- ========================================================================= -->
+        <div id="view-sell" class="view-screen-layer hidden flex flex-col w-full animated-transition">
+            
+            <div class="bg-white border-b border-slate-100 p-4 flex items-center gap-4 sticky top-0 z-20">
+                <button onclick="switchView('home')" class="w-8 h-8 rounded-full bg-slate-50 flex items-center justify-center text-slate-700 click-bounce">
+                    <i class="fa-solid fa-arrow-left"></i>
+                </button>
+                <h2 class="text-base font-extrabold text-slate-800">Sell USDT Liquidator</h2>
+            </div>
+            
+            <!-- Linear Stepper Process System Array Rows -->
+            <div class="step-node-line flex justify-between items-center px-6 py-4 bg-white border-b border-slate-50 text-[11px] font-bold">
+                <div class="flex flex-col items-center gap-1.5 z-10">
+                    <span class="w-7 h-7 bg-blue-600 text-white rounded-full flex items-center justify-center shadow-md shadow-blue-600/20">1</span>
+                    <span class="text-blue-600">Amount</span>
+                </div>
+                <div class="w-full h-[1px] bg-gray-200 mb-4"></div>
+                <div class="flex flex-col items-center gap-1.5 z-10">
+                    <span class="w-7 h-7 bg-slate-100 text-slate-400 border border-slate-200 rounded-full flex items-center justify-center">2</span>
+                    <span class="text-slate-400 font-medium">Send</span>
+                </div>
+                <div class="w-full h-[1px] bg-gray-200 mb-4"></div>
+                <div class="flex flex-col items-center gap-1.5 z-10">
+                    <span class="w-7 h-7 bg-slate-100 text-slate-400 border border-slate-200 rounded-full flex items-center justify-center">3</span>
+                    <span class="text-slate-400 font-medium">Receive</span>
+                </div>
+                <div class="w-full h-[1px] bg-gray-200 mb-4"></div>
+                <div class="flex flex-col items-center gap-1.5 z-10">
+                    <span class="w-7 h-7 bg-slate-100 text-slate-400 border border-slate-200 rounded-full flex items-center justify-center">4</span>
+                    <span class="text-slate-400 font-medium">Done</span>
+                </div>
+            </div>
+
+            <!-- Content Area Processing Terminal Body -->
+            <div class="p-4 space-y-4">
+                <div class="bg-white p-5 rounded-2xl border border-slate-100 shadow-sm space-y-4">
+                    
+                    <div>
+                        <label class="text-xs font-bold text-slate-400 uppercase tracking-wider block mb-2">USDT Amount to Sell</label>
+                        <div class="relative rounded-xl overflow-hidden shadow-inner">
+                            <input id="sellTabUsdtInput" type="number" placeholder="e.g., 100" class="w-full bg-slate-50 border border-slate-200 rounded-xl py-3.5 px-4 text-base font-black text-slate-800 focus:outline-none focus:border-blue-500 focus:bg-white transition-all" />
+                        </div>
+                    </div>
+
+                    <div class="flex justify-between items-center bg-blue-50/40 border border-blue-100 rounded-xl p-4">
+                        <span class="text-xs text-slate-500 font-bold uppercase tracking-wider">You will receive</span>
+                        <span id="sellTabInrOutput" class="text-xl font-black text-blue-600">₹0.00</span>
+                    </div>
+
+                    <!-- 🛠️ DYNAMIC NODE TEXT LABEL FOR SELL RATE -->
+                    <p id="sellTabRateLabel" class="text-xs text-slate-400 font-bold uppercase tracking-wide">Rate Matrix: ₹92/USDT</p>
+
+                    <!-- Exact 2 Network Selection Grid Node Blocks -->
+                    <div>
+                        <label class="text-xs font-bold text-slate-400 uppercase tracking-wider block mb-2">Select Target Settlement Network</label>
+                        <div class="grid grid-cols-2 gap-3">
+                            <div id="sell-net-trc" onclick="selectSellTabNetwork('trc')" class="sell-tab-network-card border-2 border-blue-500 bg-blue-50/60 rounded-xl p-3.5 flex items-center justify-center gap-2.5 cursor-pointer font-black text-xs text-slate-800 transition">
+                                <i class="fa-solid fa-triangle-exclamation text-red-500 text-base"></i> TRC20 Node
+                            </div>
+                            <div id="sell-net-bep" onclick="selectSellTabNetwork('bep')" class="sell-tab-network-card border border-slate-200 bg-white rounded-xl p-3.5 flex items-center justify-center gap-2.5 cursor-pointer font-black text-xs text-slate-800 transition hover:bg-slate-50">
+                                <i class="fa-solid fa-coins text-amber-500 text-base"></i> BEP20 Node
+                            </div>
+                        </div>
+                    </div>
+
+                    <button class="w-full bg-blue-600 hover:bg-blue-700 text-white font-extrabold py-3.5 rounded-xl shadow-md transition click-bounce mt-2">
+                        Continue Liquidation &rarr;
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- ========================================================================= -->
+        <!-- 4. SYSTEM TXNS SCREEN MODULE -->
+        <!-- ========================================================================= -->
+        <div id="view-txns" class="view-screen-layer hidden flex flex-col w-full animated-transition">
+            <!-- 🌟 AB IDHAR OPERATIONAL SYSTEM SNAPSHOT CODE POORA DYNAMIC INJECT HOGA -->
+        </div>
+
+        <!-- ========================================================================= -->
+        <!-- 5. SYSTEM PROFILE SCREEN MODULE -->
+        <!-- ========================================================================= -->
+        <div id="view-profile" class="view-screen-layer hidden flex flex-col w-full animated-transition">
+            <div class="bg-white border-b border-slate-100 p-4 sticky top-0 z-20">
+                <h2 class="text-base font-extrabold text-slate-800">User Profile Node</h2>
+            </div>
+
+            <div class="p-4 space-y-4">
+                
+                <!-- Core Profile Data Card Container -->
+                <div class="bg-white p-5 rounded-2xl border border-slate-100 shadow-sm space-y-4">
+                    <div class="flex items-center gap-4">
+                        <div class="w-14 h-14 bg-blue-600 text-white font-black text-xl rounded-full flex items-center justify-center shadow-md shadow-blue-500/10">P</div>
+                        <div>
+                            <h3 id="profileIdentityName" class="font-extrabold text-slate-800 text-base">Prakash Kumar</h3>
+                            <p class="text-[11px] text-slate-400 font-bold uppercase tracking-wider flex items-center gap-1 mt-0.5">
+                                <i class="fa-solid fa-circle-check text-emerald-500"></i> Verified Account
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <!-- Meta Contact Vectors Grid Box Row Details -->
+                    <div class="text-xs text-slate-600 space-y-2.5 pt-3.5 border-t border-slate-100 font-semibold tracking-wide">
+                        <p class="flex items-center gap-2.5"><i class="fa-regular fa-envelope text-slate-400 text-sm"></i> <span id="profileIdentityEmail">mrbondex3@gmail.com</span></p>
+                        <p class="flex items-center gap-2.5"><i class="fa-regular fa-phone text-gray-400 text-sm"></i> <span id="profileIdentityPhone">7779826401</span></p>
+                    </div>
+
+                    <!-- USDT INTEGRATED BALANCE AND WITHDRAW ARROW COMPONENT -->
+                    <div class="bg-slate-50/80 border border-slate-100 rounded-xl p-4 flex justify-between items-center mt-2 shadow-inner">
+                        <div class="flex items-center gap-3">
+                            <div class="bg-blue-50 p-2.5 rounded-lg text-blue-600"><i class="fa-solid fa-wallet"></i></div>
+                            <div>
+                                <p class="text-[10px] text-slate-400 font-extrabold uppercase tracking-widest">Prime Exch USDT</p>
+                                <p class="text-lg font-black text-slate-800 mt-0.5"><span id="profileUsdtDisplay">0.00</span> <span class="text-xs font-bold text-slate-400">USDT</span></p>
+                                <p class="text-[9px] text-slate-400 font-medium">Wallet • PEX-USDT</p>
+                            </div>
+                        </div>
+                        <button class="bg-blue-50 hover:bg-blue-100 text-blue-600 text-xs font-black px-3.5 py-2 rounded-lg border border-blue-200/50 transition click-bounce">Withdraw ↗</button>
+                    </div>
+                </div>
+
+                <!-- Navigation Hyperlink Menu Item Rows -->
+                <div class="space-y-2.5">
+                    
+                    <!-- Row item 1 -->
+                    <div class="bg-white p-4 rounded-xl border border-slate-100/80 flex justify-between items-center cursor-pointer hover:bg-slate-50 font-bold text-slate-700 text-xs uppercase tracking-wider shadow-sm transition">
+                        <span class="flex items-center gap-3 text-slate-600"><i class="fa-solid fa-key-skeleton text-blue-500 text-sm"></i> Change Password</span>
+                        <i class="fa-solid fa-chevron-right text-slate-300 text-xs"></i>
+                    </div>
+                    
+                    <!-- Row item 2 (🛠️ REDIRECTED CONTACT US ENGINES WITH MAILTO TRRIGERS) -->
+                    <a href="mailto:mrbondex3@gmail.com" class="bg-white p-4 rounded-xl border border-slate-100/80 flex justify-between items-center cursor-pointer hover:bg-slate-50 font-bold text-slate-700 text-xs uppercase tracking-wider shadow-sm transition block decoration-none">
+                        <span class="flex items-center gap-3 text-slate-600"><i class="fa-solid fa-envelope-open-text text-blue-500 text-sm"></i> Contact Us</span>
+                        <i class="fa-solid fa-chevron-right text-slate-300 text-xs"></i>
+                    </a>
+                    
+                    <!-- Row item 3 -->
+                    <div onclick="switchView('txns')" class="bg-white p-4 rounded-xl border border-slate-100/80 flex justify-between items-center cursor-pointer hover:bg-slate-50 font-bold text-slate-700 text-xs uppercase tracking-wider shadow-sm transition">
+                        <span class="flex items-center gap-3 text-slate-600"><i class="fa-solid fa-timeline text-blue-500 text-sm"></i> Transaction History</span>
+                        <i class="fa-solid fa-chevron-right text-slate-300 text-xs"></i>
+                    </div>
+                </div>
+
+                <!-- Red Outline Bar Logout CTA Component Button -->
+                <button onclick="logoutAction()" class="w-full bg-white border border-red-500 hover:bg-red-50 text-red-500 font-extrabold py-3.5 rounded-xl flex items-center justify-center gap-2 shadow-sm transition click-bounce mt-4">
+                    <i class="fa-solid fa-arrow-right-from-bracket"></i> Logout Node Session
+                </button>
+            </div>
+        </div>
+
+        <!-- STICKY FLOATING WHATSAPP ASSISTANCE ANCHOR NODE (🛠️ FIXED REDIRECT ROUTE TO 8579832980) -->
+        <a href="https://wa.me/918579832980" target="_blank" class="fixed bottom-24 right-4 bg-[#25D366] text-white p-3.5 rounded-full shadow-2xl click-bounce z-50 flex items-center justify-center w-14 h-14 border border-white/10">
+            <i class="fa-brands fa-whatsapp text-3xl"></i>
+        </a>
+
+        <!-- ========================================================================= -->
+        <!--             FIXED PERMANENT ANCHORED BOTTOM NAVIGATION BAR                -->
+        <!-- ========================================================================= -->
+           <div class="fixed bottom-0 left-0 right-0 mx-auto w-full max-w-md bg-white border-t border-slate-100 px-2 py-3.5 flex justify-around items-center z-50 shadow-[0_-4px_20px_rgba(0,0,0,0.06)]">
+            
+            <!-- Navbar Trigger: Home -->
+               <button id="nav-home" onclick="switchView('home')" class="nav-action-item flex flex-col items-center gap-1 text-blue-600">
+                <i class="fa-solid fa-house text-lg"></i><span class="text-[10px] font-bold tracking-wide">Home</span>
+            </button>
+            
+            <!-- Navbar Trigger: Buy -->
+            <button id="nav-buy" onclick="switchView('buy')" class="nav-action-item flex flex-col items-center gap-1 text-slate-400">
+                <i class="fa-solid fa-cart-shopping text-lg"></i><span class="text-[10px] font-medium tracking-wide">Buy</span>
+            </button>
+            
+            <!-- Navbar Trigger: Sell -->
+            <button id="nav-sell" onclick="switchView('sell')" class="nav-action-item flex flex-col items-center gap-1 text-slate-400">
+                <i class="fa-solid fa-circle-arrow-down text-lg"></i><span class="text-[10px] font-medium tracking-wide">Sell</span>
+            </button>
+            
+            <!-- Navbar Trigger: Txns -->
+            <button id="nav-txns" onclick="switchView('txns')" class="nav-action-item flex flex-col items-center gap-1 text-slate-400">
+                <i class="fa-solid fa-receipt text-lg"></i><span class="text-[10px] font-medium tracking-wide">Txns</span>
+            </button>
+            
+            <!-- Navbar Trigger: Profile -->
+            <button id="nav-profile" onclick="switchView('profile')" class="nav-action-item flex flex-col items-center gap-1 text-slate-400">
+                <i class="fa-solid fa-user text-lg"></i><span class="text-[10px] font-medium tracking-wide">Profile</span>
+            </button>
+        </div>
+
+    </div>
+
+    <!-- ========================================================================= -->
+    <!--                      CORE DATA OPERATIONS LOGIC MODULE                    -->
+    <!-- ========================================================================= -->
+    <!-- ✅ FIREBASE CDN -->
+    <script src="https://www.gstatic.com/firebasejs/9.1.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.1.0/firebase-firestore-compat.js"></script>
+
+    <script>
+        // 🔥 FIREBASE CONFIG
+        const firebaseConfig = {
+          apiKey: "AIzaSyCRocodkDhKanc-9hTI2xpzfihlh29udio",
+          authDomain: "trusted-usdt-seller.firebaseapp.com",
+          projectId: "trusted-usdt-seller",
+          appId: "1:667426874776:web:2c058a8b06a985e390b7ed"
+        };
+
+        firebase.initializeApp(firebaseConfig);
+        const db = firebase.firestore();
+
+        const profileBtn = document.getElementById('profileBtn');
+        const logoutDropdown = document.getElementById('logoutDropdown');
+        const userDisplay = document.getElementById('userDisplay');
+        const toast = document.getElementById('toastNotification');
+        
+        // Home Segment Elements Map
+        const inrInput = document.getElementById('inrInput');
+        const usdtOutput = document.getElementById('usdtOutput');
+        const calculatorCoinLogo = document.getElementById('calculatorCoinLogo');
+        const liveRateDisplay = document.getElementById('liveRateDisplay');
+
+        // Buy View Segment Elements Map
+        const buyTabInrInput = document.getElementById('buyTabInrInput');
+        const buyTabUsdtOutput = document.getElementById('buyTabUsdtOutput');
+        const buyTabActiveNetText = document.getElementById('buyTabActiveNetText');
+        const buyTabRateLabel = document.getElementById('buyTabRateLabel');
+        let activeBuyTabFee = 0.00;
+
+        // Sell View Segment Elements Map
+        const sellTabUsdtInput = document.getElementById('sellTabUsdtInput');
+        const sellTabInrOutput = document.getElementById('sellTabInrOutput');
+        const sellTabRateLabel = document.getElementById('sellTabRateLabel');
+
+        // ==========================================
+        // 🛠️ DYNAMIC LIVE CONVERSIONS RATIO SHIELD
+        // ==========================================
+        let standardRate = 92.00; 
+
+        // Admin dynamic controller listener hook
+        db.collection("settings").doc("payment").onSnapshot((doc) => {
+            if (doc.exists && doc.data().rate) {
+                standardRate = parseFloat(doc.data().rate);
+                
+                // Real-time text labels replacements
+                liveRateDisplay.innerText = "₹" + standardRate.toFixed(2);
+                buyTabRateLabel.innerText = "Rate Vector: ₹" + standardRate.toFixed(0) + "/USDT";
+                sellTabRateLabel.innerText = "Rate Matrix: ₹" + standardRate.toFixed(0) + "/USDT";
+                
+                // Fire instant computations
+                calculateHomeLiveUSDT();
+                if(!document.getElementById('view-buy').classList.contains('hidden')) {
+                    calculateBuyTabLiveUSDT();
+                }
+                if(!document.getElementById('view-sell').classList.contains('hidden')) {
+                    calculateSellTabLiveINR();
+                }
+            }
+        });
+
+        // ==========================================
+        // 🚀 ROUTER VIEW TOGGLE ENGINE MECHANISM
+        // ==========================================
+        function switchView(viewName) {
+            // Hide all overlay screening layers
+            document.querySelectorAll('.view-screen-layer').forEach(screen => screen.classList.add('hidden'));
+            
+            // Standardize navbar buttons states back to baseline variables
+            document.querySelectorAll('.nav-action-item').forEach(btn => {
+                btn.className = "nav-action-item flex flex-col items-center gap-1 text-slate-400";
+            });
+            
+            // Render specific route viewport active layout mapping
+            document.getElementById(`view-${viewName}`).classList.remove('hidden');
+            document.getElementById(`nav-${viewName}`).className = "nav-action-item flex flex-col items-center gap-1 text-blue-600 font-bold";
+            
+            // Specific UI handling hooks for inner input data cloning setups
+            if(viewName === 'buy') {
+                buyTabInrInput.value = inrInput.value;
+                calculateBuyTabLiveUSDT();
+            } else if (viewName === 'sell') {
+                calculateSellTabLiveINR();
+            }
+        }
+
+        // ==========================================
+        // 🚀 REAL-TIME MATHEMATICAL COMPUTE UTILITIES
+        // ==========================================
+        function calculateHomeLiveUSDT() {
+            const rawValue = parseFloat(inrInput.value);
+            if (!isNaN(rawValue) && rawValue > 0) {
+                usdtOutput.innerText = `${(rawValue / standardRate).toFixed(2)} USDT`;
+            } else {
+                usdtOutput.innerText = "0.00 USDT";
+            }
+        }
+        inrInput.addEventListener('input', calculateHomeLiveUSDT);
+
+        function calculateBuyTabLiveUSDT() {
+            const rawInr = parseFloat(buyTabInrInput.value);
+            if (!isNaN(rawInr) && rawInr > 0) {
+                const totalGrossCrypto = rawInr / standardRate; 
+                const calculatedNetCrypto = Math.max(0, totalGrossCrypto - activeBuyTabFee).toFixed(2);
+                buyTabUsdtOutput.innerText = `${calculatedNetCrypto} USDT`;
+            } else {
+                buyTabUsdtOutput.innerText = "0.00 USDT";
+            }
+        }
+        buyTabInrInput.addEventListener('input', calculateBuyTabLiveUSDT);
+
+        function calculateSellTabLiveINR() {
+            const rawCrypto = parseFloat(sellTabUsdtInput.value);
+            if (!isNaN(rawCrypto) && rawCrypto > 0) {
+                sellTabInrOutput.innerText = `₹${(rawCrypto * standardRate).toFixed(2)}`;
+            } else {
+                sellTabInrOutput.innerText = "₹0.00";
+            }
+        }
+        sellTabUsdtInput.addEventListener('input', calculateSellTabLiveINR);
+
+        // ==========================================
+        // 🚀 HARDWARE INTERACTIVE GRID COMPONENT TOGGLES
+        // ==========================================
+        function selectHomeNetwork(networkCode) {
+            document.querySelectorAll('.home-network-card').forEach(card => {
+                card.className = "home-network-card bg-white border border-slate-200 p-3 rounded-xl text-center flex flex-col items-center justify-between cursor-pointer transition-all duration-200 hover:bg-slate-50";
+            });
+            document.getElementById(`net-${networkCode}`).className = "home-network-card bg-blue-50/60 border-2 border-blue-500 p-3 rounded-xl text-center flex flex-col items-center justify-between cursor-pointer relative transition-all duration-200";
+            
+            // Change upper dynamic icons block
+            if(networkCode === 'trc') {
+                calculatorCoinLogo.className = "fa-solid fa-triangle-exclamation text-red-500 text-xl w-6 text-center";
+            } else if (networkCode === 'erc') {
+                calculatorCoinLogo.className = "fa-brands fa-ethereum text-slate-700 text-xl w-6 text-center";
+            } else if (networkCode === 'bep') {
+                calculatorCoinLogo.className = "fa-solid fa-coins text-amber-500 text-xl w-6 text-center";
+            }
+        }
+
+        function selectBuyTabNetwork(networkCode, dynamicFeeValue) {
+            activeBuyTabFee = dynamicFeeValue;
+            document.querySelectorAll('.buy-tab-network-card').forEach(card => {
+                card.className = "buy-tab-network-card border border-slate-200 bg-white rounded-xl p-3 flex flex-col justify-between cursor-pointer hover:bg-slate-50/50 transition";
+            });
+            
+            document.getElementById(`buy-net-${networkCode}`).className = "buy-tab-network-card border-2 border-blue-500 bg-blue-50/60 rounded-xl p-3 flex flex-col justify-between cursor-pointer transition";
+            buyTabActiveNetText.innerText = `Network: ${networkCode === 'pex' ? 'PEX-USDT' : networkCode.toUpperCase() + '20'}`;
+            calculateBuyTabLiveUSDT();
+        }
+
+        function selectSellTabNetwork(networkCode) {
+            document.querySelectorAll('.sell-tab-network-card').forEach(card => {
+                card.className = "sell-tab-network-card border border-slate-200 bg-white rounded-xl p-3.5 flex items-center justify-center gap-2.5 cursor-pointer font-black text-xs text-slate-800 transition hover:bg-slate-50";
+            });
+            document.getElementById(`sell-net-${networkCode}`).className = "sell-tab-network-card border-2 border-blue-500 bg-blue-50/60 rounded-xl p-3.5 flex items-center justify-center gap-2.5 cursor-pointer font-black text-xs text-slate-800 transition";
+        }
+
+        // ==========================================
+        // 🚀 CACHE TRANSMISSION BRIDGE GATEWAYS
+        // ==========================================
+        function triggerBuyProcess() {
+            localStorage.setItem("currentDepositAmount", inrInput.value || "10000");
+            window.location.href = "payment.html";
+        }
+
+        // Buy Button functionality inside inner Tab
+        function executeBuyTabOrderPipeline() {
+            const inputVal = buyTabInrInput.value;
+            if(!inputVal || parseFloat(inputVal) < 2000) {
+                showToastMessage("⚠️ Minimum buying threshold is ₹2,000", false);
+                return;
+            }
+            localStorage.setItem("currentDepositAmount", inputVal);
+            window.location.href = "payment.html";
+        }
+
+        // ==========================================
+        // 🚀 CLIENT STATE & SNAPSHOT LOGGER (INTEGRATED PATCH)
+        // ==========================================
+        const cachedUserSessionKey = localStorage.getItem("user");
+        if(cachedUserSessionKey) {
+            userDisplay.innerText = "User ID: " + cachedUserSessionKey;
+            document.getElementById("profileIdentityPhone").innerText = cachedUserSessionKey;
+            
+            // Real-time listen arrays mapping
+            db.collection("users").doc(cachedUserSessionKey).onSnapshot((doc) => {
+                if(doc.exists) {
+                    const data = doc.data();
+                    if(data.name) {
+                        document.getElementById("profileIdentityName").innerText = data.name;
+                    }
+                    if(data.email) {
+                        document.getElementById("profileIdentityEmail").innerText = data.email;
+                    } else {
+                        document.getElementById("profileIdentityEmail").innerText = "user_" + cachedUserSessionKey + "@bitpay.pro";
+                    }
+                    if(data.usdt !== undefined) {
+                        document.getElementById("dashboardUsdtStack").innerText = parseFloat(data.usdt).toFixed(2);
+                        document.getElementById("profileUsdtDisplay").innerText = parseFloat(data.usdt).toFixed(2);
+                    }
+
+                    // 🌟 RENDER REAL-TIME TXNS STATE MODULES ON VIEW-LISTS PANE
+                    const txnsViewBox = document.getElementById("view-txns");
+                    let innerTxnListHtml = `<div class="bg-white border-b border-slate-100 p-4 sticky top-0 z-20"><h2 class="text-base font-extrabold text-slate-800">Transactions Ledger</h2></div>`;
+                    
+                    if(data.history && data.history.length > 0) {
+                        innerTxnListHtml += `<div class="p-4 space-y-3 overflow-y-auto no-scrollbar pb-24">`;
+                        
+                        [...data.history].reverse().forEach(txn => {
+                            const isSuccess = txn.status === "Success";
+                            const isFailed = txn.status === "Failed";
+                            
+                            let statusBadgeClass = "bg-yellow-50 text-yellow-600 border border-yellow-100";
+                            if(isSuccess) statusBadgeClass = "bg-emerald-50 text-emerald-600 border border-emerald-100";
+                            if(isFailed) statusBadgeClass = "bg-red-50 text-red-600 border border-red-100";
+
+                            innerTxnListHtml += `
+                            <div class="bg-white p-4 rounded-xl border border-slate-100 shadow-sm flex justify-between items-center transition">
+                                <div>
+                                    <p class="text-xs font-mono text-slate-400">ID: ${txn.txnId || 'TRX-NODE'}</p>
+                                    <h4 class="text-sm font-black text-slate-800 mt-1 uppercase">${txn.type || 'BUY'} ${txn.amt} ${txn.coin}</h4>
+                                    <p class="text-[10px] text-slate-400 font-bold mt-1">${txn.date}</p>
+                                </div>
+                                <span class="text-[10px] font-black uppercase px-2.5 py-1 rounded-md ${statusBadgeClass}">
+                                    ${txn.status}
+                                </span>
+                            </div>`;
+                        });
+                        innerTxnListHtml += `</div>`;
+                        txnsViewBox.innerHTML = innerTxnListHtml;
+                    } else {
+                        txnsViewBox.innerHTML = `
+                        <div class="bg-white border-b border-slate-100 p-4 sticky top-0 z-20"><h2 class="text-base font-extrabold text-slate-800">Transactions Ledger</h2></div>
+                        <div class="flex-grow flex flex-col items-center justify-center py-40 text-slate-400 font-semibold text-sm">No transactions yet.</div>`;
+                    }
+                }
+            }, (err) => {
+                console.log("Profile stream execution error:", err);
+            });
+        }
+
+        // Toggle user dropdown card options layout
+        profileBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            logoutDropdown.classList.toggle('hidden');
+        });
+        document.addEventListener('click', () => logoutDropdown.classList.add('hidden'));
+
+        // Sleek In-Page Toast Handler (Bypasses Browser alerts)
+        function showToastMessage(text, isGreenVariant) {
+            const statusIcon = document.getElementById("toastIconContainer");
+            document.getElementById('toastText').innerText = text;
+            
+            if(!isGreenVariant) {
+                statusIcon.className = "flex items-center justify-center bg-red-500/10 text-red-400 w-5 h-5 rounded-full";
+                statusIcon.innerHTML = `<i class="fa-solid fa-triangle-exclamation text-[10px]"></i>`;
+            } else {
+                statusIcon.className = "flex items-center justify-center bg-emerald-500/10 text-emerald-400 w-5 h-5 rounded-full";
+                statusIcon.innerHTML = `<i class="fa-solid fa-check text-[10px]"></i>`;
+            }
+
+            toast.classList.remove('opacity-0', 'pointer-events-none');
+            toast.classList.add('opacity-100');
+            
+            setTimeout(() => {
+                toast.classList.remove('opacity-100');
+                toast.classList.add('opacity-0', 'pointer-events-none');
+            }, 1600);
+        }
+
+        function logoutAction() {
+            localStorage.removeItem("user");
+            showToastMessage("Session cleared. Redirecting... 👋", true);
+            setTimeout(() => {
+                window.location.href = "index.html";
+            }, 1200);
+        }
+    </script>
+</body>
+</html>
