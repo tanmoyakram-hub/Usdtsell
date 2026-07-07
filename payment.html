@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Razorpay Standard | Secure Payment Gateway</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background-color: #080e1e;
+            user-select: none;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .click-bounce {
+            transition: transform 0.1s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .click-bounce:active {
+            transform: scale(0.98);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(0.96); }
+            to { opacity: 1; transform: scale(1); }
+        }
+        .animate-popup { animation: fadeIn 0.2s cubic-bezier(0.16, 1, 0.3, 1); }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+    </style>
+</head>
+<body class="min-h-screen flex justify-center items-center antialiased p-0 sm:p-4">
+
+    <script>
+    const user = localStorage.getItem("user");
+    if (!user || user === "null") {
+        window.location.href = "index.html";
+    }
+    </script>
+
+    <!-- RAZORPAY STYLE GATEWAY BOX FRAME -->
+    <div class="w-full max-w-md bg-[#fafafa] min-h-screen sm:min-h-[unset] relative flex flex-col overflow-hidden sm:rounded-2xl sm:shadow-[0_20px_60px_rgba(0,0,0,0.5)] border-x border-slate-200/10">
+        
+        <!-- RAZORPAY HEADER TAB -->
+        <div class="bg-[#0f172a] text-white px-6 py-5 flex justify-between items-center border-b border-slate-800">
+            <div class="flex items-center gap-2.5">
+                <div class="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center font-bold text-sm tracking-tighter text-white shadow-md shadow-blue-600/20">
+                    PEX
+                </div>
+                <div>
+                    <h2 class="text-sm font-bold tracking-tight text-white uppercase">Prime Exchange</h2>
+                    <p class="text-[10px] text-slate-400 font-medium">Secure Checkout Node</p>
+                </div>
+            </div>
+            <div class="text-right">
+                <span class="text-[10px] bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 font-bold px-2.5 py-1 rounded-md uppercase tracking-wider flex items-center gap-1">
+                    <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span> UPI Live
+                </span>
+            </div>
+        </div>
+
+        <!-- TRANSACTION VALUE HEADER SUMMARY -->
+        <div class="bg-white px-6 py-4 border-b border-slate-200/60 flex justify-between items-center shadow-sm">
+            <div class="text-xs font-semibold text-slate-500 uppercase tracking-wider">Amount Payable:</div>
+            <div class="text-xl font-extrabold text-slate-800 flex items-center gap-0.5">
+                <span class="text-sm font-bold text-slate-500">₹</span><span id="payableAmountDisplay">10,000.00</span>
+            </div>
+        </div>
+
+        <!-- MAIN INTERFACE LAYER -->
+        <div class="p-5 space-y-4">
+            
+            <!-- PREMIUM QR MATRIX WRAPPER -->
+            <div class="bg-white p-5 rounded-xl border border-slate-200/60 shadow-[0_2px_12px_rgba(0,0,0,0.02)] flex flex-col items-center">
+                <div class="w-48 h-48 bg-white overflow-hidden rounded-xl border border-slate-200/80 p-2 shadow-sm flex items-center justify-center mb-3">
+                    <img id="qrImage" src="" alt="UPI QR Code" class="max-w-full max-h-full object-contain">
+                </div>
+                <h3 class="text-xs font-bold text-slate-700">Scan this QR using PhonePe, GPay, Paytm or Any UPI</h3>
+                <p class="text-[10px] text-slate-400 font-medium mt-0.5">Please do not refresh or hit close until verified</p>
+            </div>
+
+            <!-- PROOF LOG SYSTEM INPUTS PANEL -->
+            <form id="payForm" class="bg-white p-5 rounded-xl border border-slate-200/60 shadow-[0_2px_12px_rgba(0,0,0,0.02)] space-y-4.5">
+                
+                <!-- 🔔 DYNAMIC IN-FORM EXCEPTION WARNING LOG -->
+                <div id="paymentErrorLog" class="hidden text-xs font-bold text-red-600 bg-red-50 border border-red-100 rounded-xl p-3.5 text-center"></div>
+
+                <!-- Input Row 1: Read-Only INR Verification Holder -->
+                <div>
+                    <label class="text-[11px] font-bold text-slate-400 uppercase tracking-wider block mb-1.5">Confirmed Order Amount (INR)</label>
+                    <div class="relative bg-slate-50 border border-slate-200 rounded-xl p-3 flex items-center shadow-inner opacity-75">
+                        <span class="text-slate-400 font-bold text-sm mr-1">₹</span>
+                        <input id="amount" type="number" readonly class="w-full bg-transparent text-slate-800 font-extrabold text-base outline-none cursor-not-allowed">
+                    </div>
+                </div>
+
+                <!-- Input Row 2: Standard UTR Field -->
+                <div>
+                    <label class="text-[11px] font-bold text-slate-500 uppercase tracking-wider block mb-1.5">12-Digit UTR / Transaction ID</label>
+                    <div class="relative bg-white border border-slate-300 rounded-xl focus-within:border-blue-600 focus-within:ring-2 focus-within:ring-blue-600/10 transition-all">
+                        <input id="utr" type="text" placeholder="e.g., 439281740291" class="w-full bg-transparent py-3 px-3.5 text-sm font-semibold text-slate-800 placeholder-slate-400 outline-none font-mono tracking-wide">
+                    </div>
+                </div>
+
+                <!-- Input Row 3: Proof Field -->
+                <div>
+                    <label class="text-[11px] font-bold text-slate-500 uppercase tracking-wider block mb-1.5">Payment Screenshot Reference (Optional)</label>
+                    <div class="relative bg-white border border-slate-300 rounded-xl focus-within:border-blue-600 focus-within:ring-2 focus-within:ring-blue-600/10 transition-all">
+                        <input id="proofLinkInput" type="text" placeholder="Paste proof link or internal text note" class="w-full bg-transparent py-3 px-3.5 text-sm font-semibold text-slate-700 placeholder-slate-400 outline-none">
+                    </div>
+                </div>
+
+                <!-- RAZORPAY BLUE SUBMISSION BUTTON TRIGGER -->
+                <button type="button" onclick="submitUsdtOrderProof()" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3.5 rounded-xl shadow-md shadow-blue-600/10 text-sm tracking-wide tracking-tight uppercase flex items-center justify-center gap-2 click-bounce">
+                    <i class="fa-solid fa-lock-keyhole text-xs"></i> Complete Secure Payment
+                </button>
+                
+                <!-- FOOTER METRICS COMPLIANCE BAR -->
+                <div class="flex justify-center items-center gap-3.5 pt-1 text-[9px] text-slate-400 font-bold uppercase tracking-wider border-t border-slate-100 mt-2">
+                    <span><i class="fa-solid fa-shield-halved text-blue-500"></i> PCI-DSS Compliant</span>
+                    <span>•</span>
+                    <span><i class="fa-solid fa-badge-check text-blue-500"></i> 256-Bit Encrypted</span>
+                </div>
+            </form>
+        </div>
+
+        <!-- SYSTEM BACK NAVIGATION GATEWAY REDIRECTION LINK -->
+        <div class="text-center pb-6">
+            <a href="dashboard.html" class="text-xs font-bold text-slate-500 hover:text-blue-600 transition flex items-center justify-center gap-1.5"><i class="fa-solid fa-chevron-left text-[10px]"></i> Cancel payment and return back</a>
+        </div>
+
+        <!-- SUCCESS OVERLAY CONTAINER MODAL POPUP -->
+        <div id="vip-popup" class="hidden fixed top-0 left-0 w-full h-full bg-slate-950/70 backdrop-blur-sm z-[9999] justify-center items-center p-4">
+            <div class="bg-white p-7 rounded-2xl text-center max-w-xs w-full border border-slate-100 shadow-2xl animate-popup">
+                <div class="w-14 h-14 bg-emerald-500/10 text-emerald-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <i class="fa-solid fa-shield-arrow-up text-2xl"></i>
+                </div>
+                <h3 class="text-lg font-black text-slate-900 tracking-tight">Processing Logged</h3>
+                <p class="text-xs text-slate-500 font-medium mt-1.5 leading-relaxed">USDT asset deployment request forwarded to master admin queue successfully. Syncing dashboard track.</p>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- DATA PIPELINES AND UTILITIES INTEGRATION SCRIPTS -->
+    <script src="https://www.gstatic.com/firebasejs/9.1.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.1.0/firebase-firestore-compat.js"></script>
+
+    <script>
+        const firebaseConfig = {
+          apiKey: "AIzaSyCRocodkDhKanc-9hTI2xpzfihlh29udio",
+          authDomain: "trusted-usdt-seller.firebaseapp.com",
+          projectId: "trusted-usdt-seller",
+          appId: "1:667426874776:web:2c058a8b06a985e390b7ed"
+        };
+
+        firebase.initializeApp(firebaseConfig);
+        const db = firebase.firestore();
+
+        // Load amount cached values inside local window elements[span_1](start_span)[span_1](end_span)
+        window.addEventListener('DOMContentLoaded', () => {
+            const savedAmount = localStorage.getItem("currentDepositAmount");
+            if (savedAmount) {
+                document.getElementById("amount").value = savedAmount;
+                document.getElementById("payableAmountDisplay").innerText = parseFloat(savedAmount).toLocaleString('en-IN', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+            }
+        });
+
+        // Live monitor payment document collections endpoint images[span_2](start_span)[span_2](end_span)
+        db.collection("settings").doc("payment").onSnapshot(doc => {
+            if(doc.exists && doc.data().qr){
+                document.getElementById("qrImage").src = doc.data().qr;
+            }
+        });
+
+        // HIGH-PERFORMANCE USDT PURCHASE SYSTEM TRANSACTION LOG ENGINE PIPELINE
+        async function submitUsdtOrderProof() {
+            const errorLog = document.getElementById("paymentErrorLog");
+            errorLog.style.display = "none";
+
+            const amountVal = parseFloat(document.getElementById("amount").value);
+            const utrValue = document.getElementById("utr").value.trim();
+            const proofLink = document.getElementById("proofLinkInput").value.trim();
+            const cachedUser = localStorage.getItem("user");
+
+            // Direct matching conditions parameters verification validations
+            if (!amountVal || !utrValue || utrValue.length < 6) {
+                errorLog.innerText = "⚠️ Please fill in a valid UTR transaction identifier!";
+                errorLog.style.display = "block";
+                return;
+            }
+
+            // Generate permanent unified transaction hash parameter keys
+            const uniqueTxnId = "TXN" + Date.now() + Math.floor(Math.random() * 1000);
+
+            try {
+                // Fetch dynamic conversion coefficients parameters metrics directly inside script bounds
+                const rateDoc = await db.collection("settings").doc("payment").get();
+                const activeRate = rateDoc.exists ? parseFloat(rateDoc.data().rate || 92) : 92;
+                const calculatedUsdt = (amountVal / activeRate).toFixed(2);
+
+                const usdtOrderPayload = {
+                    txnId: uniqueTxnId,
+                    phone: cachedUser,
+                    inrAmount: amountVal,
+                    usdtAmount: parseFloat(calculatedUsdt),
+                    utr: utrValue,
+                    proof: proofLink || "No visual link provided",
+                    status: "Processing",
+                    type: "Buy USDT",
+                    date: new Date().toLocaleString('en-GB'),
+                    timestamp: firebase.firestore.Timestamp.now()
+                };
+
+                // 1. Commit primary payload block to central usdt_orders pipeline
+                await db.collection("usdt_orders").doc(uniqueTxnId).set(usdtOrderPayload);
+
+                // 2. Load and write tracking object properties internally to history array[span_3](start_span)[span_3](end_span)
+                const userRef = db.collection("users").doc(cachedUser);
+                const userSnap = await userRef.get();
+                
+                if (userSnap.exists) {
+                    const data = userSnap.data();
+                    let historyArray = data.history ? [...data.history] : [];
+                    
+                    historyArray.push({
+                        txnId: uniqueTxnId,
+                        amt: calculatedUsdt,
+                        coin: "USDT",
+                        type: "buy",
+                        status: "Processing",
+                        date: new Date().toLocaleString('en-GB')
+                    });
+                    
+                    await userRef.update({ history: historyArray });
+                }
+
+                // Render secure modal window
+                document.getElementById('vip-popup').style.display = 'flex';
+                setTimeout(() => {
+                    document.getElementById('vip-popup').style.display = 'none';
+                    window.location.href = "dashboard.html";
+                }, 2200);
+
+            } catch (err) {
+                errorLog.innerText = "❌ Network Drop: Failed to parse configuration arrays.";
+                errorLog.style.display = "block";
+            }
+        }
+    </script>
+</body>
+</html>
