@@ -1,0 +1,760 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>BITPay Pro</title>
+
+<!-- Font Awesome Icons for Sidebar Styling -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family: 'Poppins', sans-serif;
+}
+
+body{
+background:#060b17;
+color:#fff;
+}
+
+/* HEADER */
+header{
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:18px 20px;
+background:#0b1220;
+position:sticky;
+top:0;
+z-index: 100;
+}
+
+.logo{
+font-size:22px;
+font-weight:700;
+letter-spacing:1px;
+}
+
+.user{
+display:flex;
+align-items:center;
+gap:10px;
+}
+
+.logout{
+background:#ff3b3b;
+padding:8px 14px;
+border-radius:8px;
+border:none;
+color:#fff;
+font-weight:600;
+}
+
+/* HERO */
+.hero{
+padding:50px 20px;
+background: radial-gradient(circle at center, #0f3c2f, #060b17);
+}
+
+.tag{
+color:#00e6a7;
+font-size:13px;
+letter-spacing:2px;
+margin-bottom:15px;
+}
+
+.hero h1{
+font-size:38px;
+font-weight:800;
+line-height:1.3;
+}
+
+.hero span{
+color:#00e6a7;
+}
+
+.hero p{
+margin-top:12px;
+color:#aaa;
+font-size:15px;
+line-height:1.5;
+}
+
+.btn{
+display:block;
+width:100%;
+padding:16px;
+border-radius:12px;
+text-align:center;
+margin-top:18px;
+font-weight:700;
+font-size:16px;
+text-decoration:none;
+cursor:pointer;
+}
+
+.primary{
+background:#00e6a7;
+color:#000;
+}
+
+.secondary{
+border:1px solid #2a324a;
+color:#ccc;
+}
+
+/* STATS */
+.stats{
+display:flex;
+justify-content:space-between;
+padding:30px 15px;
+text-align:center;
+}
+
+.stats h3{
+font-size:20px;
+font-weight:700;
+}
+
+.stats p{
+font-size:13px;
+color:#888;
+margin-top:5px;
+}
+
+/* SECTION */
+.section{
+padding:40px 20px;
+}
+
+.section h2{
+font-size:32px;
+font-weight:800;
+margin-bottom:10px;
+}
+
+.section p{
+color:#aaa;
+font-size:15px;
+}
+
+/* BIG CARDS */
+.card{
+background:#0f172a;
+padding:25px;
+border-radius:18px;
+margin-top:20px;
+box-shadow:0 0 20px rgba(0,0,0,0.3);
+}
+
+.card h3{
+font-size:20px;
+margin-top:10px;
+}
+
+.card p{
+margin-top:8px;
+font-size:14px;
+color:#aaa;
+line-height:1.5;
+}
+
+/* MARKET */
+.market-card{
+background:#0f172a;
+padding:20px;
+border-radius:18px;
+margin-top:20px;
+}
+
+.market-card h3{
+font-size:22px;
+margin-top:5px;
+}
+
+.row{
+display:flex;
+justify-content:space-between;
+align-items:center;
+font-size:16px;
+}
+
+.green{
+color:#00ff88;
+font-weight:600;
+}
+
+.red{
+color:#ff4d4d;
+font-weight:600;
+}
+
+/* FOOTER */
+footer{
+padding:40px 20px;
+text-align:center;
+background:#0b1220;
+}
+
+footer h2{
+font-size:28px;
+}
+img{
+border-radius:50%;
+}
+
+/* 🔔 IN-FORM ALERT TEXT DESIGN */
+.form-alert {
+    margin-top: 15px;
+    font-size: 13px;
+    font-weight: 600;
+    text-align: center;
+    display: none;
+    padding: 10px;
+    border-radius: 8px;
+}
+.alert-error {
+    color: #ff4d4d;
+    background: rgba(255, 77, 73, 0.1);
+    border: 1px solid rgba(255, 77, 73, 0.2);
+}
+.alert-success {
+    color: #00ff88;
+    background: rgba(0, 255, 136, 0.1);
+    border: 1px solid rgba(0, 255, 136, 0.2);
+}
+
+/* 📊 PROFESSIONAL SIDEBAR DESIGN */
+#sidebar {
+    position: fixed;
+    top: 0;
+    left: -280px;
+    width: 280px;
+    height: 100%;
+    background: #0b1220;
+    box-shadow: 5px 0 25px rgba(0,0,0,0.5);
+    transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 9999;
+    display: flex;
+    flex-direction: column;
+    padding: 0 !important;
+}
+
+.sidebar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 24px 20px;
+    border-b: 1px solid #1e293b;
+    background: #0f172a;
+}
+
+.sidebar-brand {
+    font-size: 22px;
+    font-weight: 800;
+    color: #00e6a7;
+    letter-spacing: 1px;
+}
+
+.sidebar-close {
+    font-size: 18px;
+    cursor: pointer;
+    color: #94a3b8;
+    transition: 0.2s;
+}
+
+.sidebar-close:hover {
+    color: #fff;
+}
+
+.sidebar-menu {
+    padding: 20px 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    flex-grow: 1;
+}
+
+.menu-title {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: #64748b;
+    letter-spacing: 1.5px;
+    margin: 15px 0 5px 10px;
+}
+
+.sidebar-item {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 12px 15px;
+    color: #cbd5e1;
+    font-size: 14px;
+    font-weight: 500;
+    text-decoration: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+.sidebar-item i {
+    font-size: 16px;
+    color: #00e6a7;
+    width: 20px;
+    text-align: center;
+}
+
+.sidebar-item:hover {
+    background: #1e293b;
+    color: #fff;
+}
+
+/* OVERLAY */
+#overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(3px);
+    display: none;
+    z-index: 9998;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header>
+<div class="logo">BITPAY</div>
+<button onclick="openSidebar()" style="font-size:22px; background:none; border:none; color:#fff;">☰</button>
+</header>
+
+<!-- HERO -->
+<div class="hero">
+
+<div class="tag">🌐 GLOBAL CRYPTO EXCHANGE</div>
+
+<h1>Trade Crypto <br> With <span>Confidence</span></h1>
+
+<p>Buy, sell and trade 300+ cryptocurrencies on BITPay. Competitive rates, ultra-low fees.</p>
+
+<a class="btn primary" onclick="showLogin()">🚀 Start Trading</a>
+<a class="btn primary" onclick="showLogin()">🔐 Login</a>
+<a class="btn secondary" onclick="showSignup()">📝 Register</a>
+
+</div>
+
+<!-- STATS -->
+<div class="stats">
+<div><h3>$2.4B+</h3><p>Volume</p></div>
+<div><h3>4.2M+</h3><p>Users</p></div>
+<div><h3>0.1%</h3><p>Fee</p></div>
+<div><h3>300+</h3><p>Assets</p></div>
+</div>
+
+<!-- WHY -->
+<div class="section">
+
+<div class="tag">⚡ WHY BITPAY</div>
+
+<h2>Built for Serious Traders</h2>
+<p>Professional grade tools, institutional security</p>
+
+<div class="card">
+<h3>🔐 Bank-Grade Security</h3>
+<p>Multi-signature cold storage, 2FA authentication, and withdrawal whitelist.</p>
+</div>
+
+<div class="card">
+<h3>⚡ Ultra-Low Latency</h3>
+<p>0.1ms order matching engine with high speed trading.</p>
+</div>
+
+<div class="card">
+<h3>🌍 P2P + Spot + OTC</h3>
+<p>Trade peer-to-peer, access spot markets, or place OTC orders.</p>
+</div>
+
+</div>
+
+<!-- MARKETS -->
+<div class="section">
+
+<div class="tag">📈 TOP MARKETS</div>
+<h2>Hot Right Now</h2>
+
+<!-- Bitcoin -->
+<div class="market-card">
+<div class="row">
+<div style="display:flex;align-items:center;gap:10px;">
+<img src="https://assets.coingecko.com/coins/images/1/large/bitcoin.png" width="35">
+<div>
+<b>Bitcoin</b><br>
+<small style="color:#888;">BTC/USDT</small>
+</div>
+</div>
+<span class="green">+1.42%</span>
+</div>
+
+<h3>$67,842</h3>
+<p style="color:#888;">Vol: $8.4B</p>
+</div>
+
+<!-- Ethereum -->
+<div class="market-card">
+<div class="row">
+<div style="display:flex;align-items:center;gap:10px;">
+<img src="https://assets.coingecko.com/coins/images/279/large/ethereum.png" width="35">
+<div>
+<b>Ethereum</b><br>
+<small style="color:#888;">ETH/USDT</small>
+</div>
+</div>
+<span class="red">-0.31%</span>
+</div>
+
+<h3>$3,512</h3>
+<p style="color:#888;">Vol: $4.2B</p>
+</div>
+
+<!-- Solana -->
+<div class="market-card">
+<div class="row">
+<div style="display:flex;align-items:center;gap:10px;">
+<img src="https://assets.coingecko.com/coins/images/4128/large/solana.png" width="35">
+<div>
+<b>Solana</b><br>
+<small style="color:#888;">SOL/USDT</small>
+</div>
+</div>
+<span class="green">+2.14%</span>
+</div>
+
+<h3>$172.40</h3>
+<p style="color:#888;">Vol: $1.8B</p>
+</div>
+
+<!-- Tether -->
+<div class="market-card">
+<div class="row">
+<div style="display:flex;align-items:center;gap:10px;">
+<img src="https://assets.coingecko.com/coins/images/325/large/Tether.png" width="35">
+<div>
+<b>Tether</b><br>
+<small style="color:#888;">USDT/INR</small>
+</div>
+</div>
+<span class="green">+0.18%</span>
+</div>
+
+<h3>₹94.69</h3>
+<p style="color:#888;">Vol: $2.4M</p>
+</div>
+
+</div>
+<!-- PARTNERS -->
+<div style="padding:40px 20px; text-align:center;">
+
+<p style="color:#888; letter-spacing:2px;">TRUSTED TECHNOLOGY PARTNERS</p>
+
+<br>
+
+<div style="display:flex; flex-wrap:wrap; justify-content:center; gap:20px; color:#888;">
+<span>Binance</span>
+<span>Coinbase</span>
+<span>Tether</span>
+<span>Bybit</span>
+<span>OKX</span>
+<span>CoinGecko</span>
+<span>TRON</span>
+<span>BNB Chain</span>
+</div>
+
+</div>
+
+<hr style="border:1px solid #111; margin:20px;">
+
+<!-- MAIN FOOTER -->
+<div style="padding:30px 20px;">
+
+<h2 style="font-size:32px;">BITPAY</h2>
+
+<p style="color:#aaa; margin-top:10px;">
+Global crypto exchange — Dubai headquartered, VARA regulated. Secure and fast trading from P2P to Spot.
+</p>
+
+<br>
+
+<div style="display:flex; gap:10px; flex-wrap:wrap;">
+<button style="background:#00e6a7; color:#000; padding:10px 15px; border-radius:8px; border:none;">
+🇦🇪 Dubai HQ
+</button>
+
+<button style="background:#1a1a1a; color:#ffcc00; padding:10px 15px; border-radius:8px; border:none;">
+🔒 VARA Regulated
+</button>
+</div>
+
+</div>
+
+<!-- LINKS -->
+<div style="padding:20px;">
+
+<h3 style="margin-bottom:10px;">PRODUCTS</h3>
+<p style="color:#888;">P2P Trading</p>
+<p style="color:#888;">Spot Exchange</p>
+<p style="color:#888;">OTC Desk</p>
+<p style="color:#888;">API Access</p>
+
+<br>
+
+<h3 style="margin-bottom:10px;">SUPPORT</h3>
+<p style="color:#888;">Help Center</p>
+<p style="color:#888;">P2P Trading</p>
+<p style="color:#888;">24/7 Available</p>
+
+</div>
+
+<hr style="border:1px solid #111; margin:20px;">
+
+<!-- 🔥 AUTH MODAL -->
+<div id="authBox" style="
+display:none;
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,0.85);
+z-index:9999;
+justify-content:center;
+align-items:center;
+">
+
+    <div style="
+    background:#0f172a;
+    padding:25px;
+    border-radius:15px;
+    width:90%;
+    max-width:350px;
+    position:relative;
+    ">
+
+        <!-- ❌ CLOSE -->
+        <span onclick="closeAuth()" style="
+        position:absolute;
+        right:15px;
+        top:10px;
+        font-size:20px;
+        cursor:pointer;
+        color:#aaa;">✖</span>
+
+        <h2 id="authTitle">Login</h2>
+
+        <input id="fullname" placeholder="Full Name"
+style="width:100%; margin-top:10px; padding:12px; border-radius:8px; border:none; display:none; background:#1e293b; color:#fff;">
+        <input id="phone" placeholder="Phone Number"
+        style="width:100%; margin-top:10px; padding:12px; border-radius:8px; border:none; background:#1e293b; color:#fff;">
+
+        <input id="password" type="password" placeholder="Password"
+        style="width:100%; margin-top:10px; padding:12px; border-radius:8px; border:none; background:#1e293b; color:#fff;">
+
+        <button id="authBtn" style="margin-top:15px; width:100%; padding:12px; background:#00e6a7; border:none; border-radius:8px; font-weight:bold; color:#000; cursor:pointer;">
+        Continue
+        </button>
+
+        <!-- 🔔 IN-FORM ALERT TEXT BOX -->
+        <div id="formAlertBox" class="form-alert"></div>
+
+    </div>
+</div>
+    
+
+<!-- COPYRIGHT -->
+<div style="text-align:center; padding:10px; color:#666; font-size:12px;">
+© 2026 BITPay Exchange. All rights reserved.
+</div>
+<div id="sidebar">
+    <div class="sidebar-header">
+        <div class="sidebar-brand">BITPAY</div>
+        <div class="sidebar-close" onclick="closeSidebar()">✕</div>
+    </div>
+    <div class="sidebar-menu">
+        <div class="menu-title">Account Access</div>
+        <div class="sidebar-item" onclick="showLogin(); closeSidebar();">
+            <i class="fa-solid fa-lock"></i> Login
+        </div>
+        <div class="sidebar-item" onclick="showSignup(); closeSidebar();">
+            <i class="fa-solid fa-user-plus"></i> Register
+        </div>
+        
+        <div class="menu-title">Services & Info</div>
+        <div class="sidebar-item">
+            <i class="fa-solid fa-circle-question"></i> Help Center
+        </div>
+        <div class="sidebar-item">
+            <i class="fa-solid fa-headset"></i> Support
+        </div>
+        <div class="sidebar-item">
+            <i class="fa-solid fa-file-contract"></i> Terms & Conditions
+        </div>
+        <div class="sidebar-item">
+            <i class="fa-solid fa-shield-halved"></i> Privacy Policy
+        </div>
+    </div>
+</div>
+
+<!-- OVERLAY YAHA -->
+<div id="overlay" onclick="closeSidebar()"></div>
+
+<!-- ✅ FIREBASE CDN -->
+<script src="https://www.gstatic.com/firebasejs/9.1.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.1.0/firebase-firestore-compat.js"></script>
+
+<!-- ✅ SINGLE SCRIPT -->
+<script>
+
+// 🔥 FIREBASE CONFIG
+const firebaseConfig = {
+  apiKey: "AIzaSyCRocodkDhKanc-9hTI2xpzfihlh29udio",
+  authDomain: "trusted-usdt-seller.firebaseapp.com",
+  projectId: "trusted-usdt-seller",
+  appId: "1:667426874776:web:2c058a8b06a985e390b7ed"
+};
+
+firebase.initializeApp(firebaseConfig);
+const db = firebase.firestore();
+
+
+// 🚀 CUSTOM FORM IN-ALERT TEXT HANDLER
+function showAlert(message, type) {
+    const alertBox = document.getElementById("formAlertBox");
+    alertBox.innerText = message;
+    alertBox.className = "form-alert"; // Reset
+    
+    if (type === "success") {
+        alertBox.classList.add("alert-success");
+    } else {
+        alertBox.classList.add("alert-error");
+    }
+    alertBox.style.display = "block";
+}
+
+function clearAlert() {
+    const alertBox = document.getElementById("formAlertBox");
+    alertBox.style.display = "none";
+    alertBox.innerText = "";
+}
+
+
+// ✅ SHOW LOGIN
+function showLogin() {
+    clearAlert();
+    document.getElementById("authBox").style.display = "flex";
+    document.getElementById("authTitle").innerText = "Login";
+    document.getElementById("fullname").style.display = "none";
+
+    document.getElementById("authBtn").onclick = loginUser;
+}
+
+// ✅ SHOW SIGNUP
+function showSignup() {
+    clearAlert();
+    document.getElementById("authBox").style.display = "flex";
+    document.getElementById("authTitle").innerText = "Register";
+    document.getElementById("fullname").style.display = "block";
+
+    document.getElementById("authBtn").onclick = registerUser;
+}
+
+// ✅ SIDEBAR
+function openSidebar() {
+    document.getElementById("sidebar").style.left = "0";
+    document.getElementById("overlay").style.display = "block";
+}
+
+function closeSidebar() {
+    document.getElementById("sidebar").style.left = "-280px";
+    document.getElementById("overlay").style.display = "none";
+}
+
+// ✅ CLOSE MODAL
+function closeAuth() {
+    document.getElementById("authBox").style.display = "none";
+    clearAlert();
+}
+
+// ✅ REGISTER
+async function registerUser() {
+
+    const name = document.getElementById("fullname").value;
+    const phone = document.getElementById("phone").value;
+    const pass = document.getElementById("password").value;
+
+    if (!name || !phone || !pass) {
+        showAlert("⚠️ Fill all details!", "error");
+        return;
+    }
+
+    try {
+        await db.collection("users").doc(phone).set({
+            name: name,
+            phone: phone,
+            password: pass
+        });
+
+        showAlert("Account Created ✅", "success");
+        setTimeout(() => { closeAuth(); }, 1200);
+
+    } catch (err) {
+        showAlert("❌ Error creating account!", "error");
+    }
+}
+
+
+// ✅ LOGIN
+async function loginUser() {
+
+    const phone = document.getElementById("phone").value;
+    const pass = document.getElementById("password").value;
+
+    if (!phone || !pass) {
+        showAlert("⚠️ Enter details!", "error");
+        return;
+    }
+
+    try {
+        const userRef = await db.collection("users").doc(phone).get();
+
+        if (userRef.exists && userRef.data().password === pass) {
+
+            localStorage.setItem("user", phone);  // ✅ save user
+            showAlert("Login successful 🔥", "success");
+
+            setTimeout(() => {
+                window.location.href = "./dashboard.html"; // ✅ redirect
+            }, 1000);
+
+        } else {
+            showAlert("❌ Wrong ID or Password!", "error");
+        }
+
+    } catch (err) {
+        showAlert("⚠️ Network error!", "error");
+    }
+}
+    
+</script>
+</body>
+</html>
